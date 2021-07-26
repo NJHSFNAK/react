@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        // 正常显示的
+        name: 'ljl',
+        age: 20,
+        arr: ['abc', 'cba', 'nba'],
+        // 不显示的
+        test1: null,
+        test2: undefined,
+        test3: false,
+        test4: true
+      }
+    }
+    render() {
+      return (
+        <div>
+          <h2>{this.state.name}</h2>
+          <h2>{this.state.age}</h2>
+          <h2>{this.state.arr}</h2>
+
+          <h2>{this.state.test1}</h2>
+          <h2>{this.state.test2}</h2>
+          <h2>{this.state.test3}</h2>
+          <h2>{this.state.test4}</h2>
+
+          {/*控制数据类型显示的方法*/}
+
+          {
+            /*
+              1.使用toString()，Boolean可以显示true或者false,null或者undefined不能显示
+              2.使用String(),适合于null、undefined和Boolean
+              3.使用+''方法，相当于是字符串了
+            */
+          }
+          {/*控制Boolean类型的数据是否显示*/}
+          <h2>{this.state.flag ? '你好啊' : '请先登录'}</h2>
+          {/*控制null、undefined类型的数据显示*/} 
+          <h2>{String(this.state.test1)}</h2>
+          <h2>{String(this.state.test3)}</h2>
+          <h2>{this.state.test4 + ''}</h2>
+        </div>
+      )
+    }
+    btnClick() {
+      this.setState({
+        msg: 'hello react'
+      })
+    }
+  }
+  // 渲染组件
+  ReactDOM.render(<App />, document.getElementById('app'));
+</script>
+
+</html>

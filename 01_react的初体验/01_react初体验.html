@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>header</div>
+  <div id="middle"></div>
+  <div>footer</div>
+</body>
+<!-- react需要引入三个包，分别是react、react-dom、babel -->
+<!-- react主要是react的核心代码 -->
+<!-- react-dom在pc端加载成DOM树，移动端会加载成想用的组件，比如apple的uibutton,android的button -->
+<!-- babel主要是将ES6的语法编译成浏览器能够识别的语言 -->
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<!-- script必须要修改type类型，负责无法解析 -->
+<script type="text/babel">
+  // App组件 使用类的方法编写，继承自React.Component
+  class App extends React.Component {
+    constructor() {
+      super();
+      // 保存数据
+      this.state = {
+        msg: 'hello world'
+      }
+    }
+    // 要加载到页面的DOM树
+    render() {
+      return (
+        <div>
+          // 显示数据 {this.state.msg}
+          <h2>{this.state.msg}</h2>
+          // button按钮的点击事件,需要绑定this onClick = {this.fun.bind(this)}
+          <button onClick={this.btnClick.bind(this)}>改变文本</button>
+        </div>
+      )
+    }
+    btnClick() {
+      // 修改state中的数据
+      this.setState({
+        msg: 'hello react'
+      })
+    }
+  }
+  // 渲染组件
+  ReactDOM.render(<App />, document.getElementById('middle'));
+</script>
+
+</html>

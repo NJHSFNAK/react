@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  // 类有三个特性，分别是继承、封装和多态
+  class Person {
+    constructor(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    foo() {
+      return this.name + '的年龄是' + this.age
+    }
+  }
+
+  class p extends Person {
+    constructor(name, age, address) {
+      super(name, age);
+      this.address = address;
+    }
+    foo(de) {
+      return `${this.name}` + '的年龄是' + this.age + '的住址是 ' + this.address
+    }
+  }
+
+  class Teacher extends Person {
+    constructor(name, age, title) {
+      super(name, age);
+      this.title = title;
+    }
+    getTitle() {
+      return this.name + '老师的年龄是' + this.age + '获得了' + this.title + '称号';
+    }
+  }
+  const person1 = new p('ljl', 18, '河北省承德市平泉市').foo('12');
+  const tea = new Teacher('ljl', 20, '三好学生优秀班干部').getTitle();
+  console.log(person1);
+  console.log(tea);
+</script>
+
+</html>

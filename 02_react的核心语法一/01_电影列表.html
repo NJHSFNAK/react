@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component {
+    constructor(prop) {
+      super(prop);
+      this.state = {
+        movies: ['星际穿越', '星球大战', '复联四', '黑寡妇']
+      }
+    }
+    render() {
+      // 实现方案一
+      const liArrs = [];
+      for (const item of this.state.movies) {
+        liArrs.push(<li>{item}</li>)
+      }
+      return (
+        <div>
+          <h2>电影列表</h2>
+          <ul>
+            {liArrs}
+          </ul>
+
+          {/*实现方案二*/}
+          <h2>电影列表</h2>
+          <ul>
+            {this.state.movies.map((item) => {
+              return <li>{item}</li>
+            })}
+          </ul>
+        </div>
+      )
+    }
+  }
+  // 渲染组件
+  ReactDOM.render(<App />, document.getElementById('app'));
+</script>
+
+</html>
