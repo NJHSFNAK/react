@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      height: 20px;
+      width: 20px;
+      border: 1px solid black;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .title{
+      background-color:springgreen;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        msg:'hello world',
+        link:'http://www.baidu.com',
+        active: true,
+        imgUrl:'https://upload.jianshu.io/users/upload_avatars/26758937/eb5eac95-a44d-4101-b858-a67d6f00c4bf?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240'
+      }
+    }
+    render(){
+      const {msg,imgUrl,link,active} = this.state;
+      const btnClick = this.btnClick.bind(this)
+      return(
+        <div>
+          <h2>{msg}</h2>
+          <img src={imgUrl} alt=""/>
+          <a href={link} target='_blank'>百度一下</a>
+          <button onClick={btnClick}>点我</button>
+          <a href=""></a>
+          <div className='box title'>box</div>
+          {/*动态绑定class属性*/}
+          <div className={"box title "+(active? 'active': null)}>我也是box</div>
+          <label htmlFor="">标签</label>
+          {/*绑定style*/}
+          <div style={
+            {
+              color: 'blue',
+              fontSize:'20px',
+              height:'20px',
+              width:'40px',
+              border:'1px solid black',
+              overflow:'hidden',
+              textOverflow:'ellipsis'
+            }
+          }>绑定style</div>
+        </div>
+      )
+    }
+    btnClick(){
+      console.log('点我了')
+    }
+  }
+  ReactDOM.render(<App/>,document.getElementById('app'))
+</script>
+
+</html>

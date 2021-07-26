@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        msg:'hello world',
+        counter:0
+      }
+      this.btnClick = this.btnClick.bind(this);
+      this.increment = this.increment.bind(this);
+      this.decrement = this.decrement.bind(this);
+    }
+    render(){
+      const {msg,counter} = this.state;
+      return(
+        <div>
+          {/*第一种方案：显示绑定this*/}
+          <h2>{counter}</h2>
+          <button onClick = {this.btnClick.bind(this)}>点我了</button>
+          <button onClick = {this.btnClick}>点我了</button>
+          {/*第二种方案，在定义函数时，使用箭头函数*/}
+          <button onClick = {this.increment}>+1</button>
+          {/*第三种方案*/}
+          <button onClick = {()=>this.decrement()}>-1</button>
+        </div>
+      )
+    }
+    btnClick(e){
+      console.log(this.state.msg,e);
+    }
+    // 第二种写法，使用箭头函数
+    increment = ()=>{
+      this.setState({
+        counter: this.state.counter+1
+      })
+      // this.state.counter = this.state.counter +1;
+    }
+    // 第三种写法
+    decrement(){
+      this.setState({
+        counter: this.state.counter-1
+      })
+    }
+  }
+  ReactDOM.render(<App/>,document.getElementById('app'))
+</script>
+
+</html>
