@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+
+<script crossorigin src="../commentJS/react.js"></script>
+<script crossorigin src="../commentJS/react-dom.js"></script>
+<script src="../commentJS/babel.min.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        counter:0,
+        movies:['大话西游','大闹江湖','盗梦空间','青春派']
+      }
+    }
+    render(){
+      const {counter,movies} = this.state;
+      return(
+        <div>
+          <h2>{counter}</h2>
+          <button onClick = {()=>this.increment()}>+1</button>
+          <button onClick = {(e)=>this.decrement(e)}>-1</button>
+          <ul>
+            {
+              movies.map((item,index)=>{
+                return (
+                <li onClick={(e)=>this.liClick(item,index,e)} title='li'> 
+                  {item}
+                </li>)
+              })
+            }
+          </ul>
+        </div>
+      )
+    }
+    increment(){
+      this.setState({
+        counter: this.state.counter+1
+      })
+      // event是原生的event，可以直接使用
+      console.log(event)
+    }
+    decrement(e){
+      this.setState({
+        counter: this.state.counter-1
+      })
+      // e是React自己合成的event，里面数据和原生的e是相同的
+      console.log(e)
+    }
+    liClick(item,index,e){
+      console.log('你点击了li的'+item,index);
+      console.log(e);
+    }
+  }
+  ReactDOM.render(<App/>,document.getElementById('app'))
+</script>
+
+</html>

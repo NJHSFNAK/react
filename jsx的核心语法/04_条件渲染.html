@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+
+<script crossorigin src="../commentJS/react.js"></script>
+<script crossorigin src="../commentJS/react-dom.js"></script>
+<script src="../commentJS/babel.min.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        isLogin: true
+      }
+    }
+    render(){
+      // 第一种方案：通过if判断
+      const {isLogin} = this.state;
+      let welcome = null,loginText = null;
+      if(isLogin){
+        welcome = '欢迎回来';
+        loginText = '退出'
+      }else{
+        welcome = '请先登录'
+        loginText = '登录'
+      }
+      return(
+        <div>
+          <h2>{welcome}</h2>
+          {/*第二种方案：通过三元运算符*/}
+          <button onClick = {()=>this.login()}>{isLogin?'退出':'登录'}</button>
+          <br/>
+          <h2>{isLogin?'hello world':undefined}</h2>
+          {/* 第三种方案：通过逻辑&&*/}
+          <h2>{isLogin && 'hello world'}</h2>
+        </div>
+      )
+    }
+    login(){
+      this.setState({
+        isLogin: !this.state.isLogin
+      })
+    }
+  }
+  ReactDOM.render(<App/>,document.getElementById('app'))
+</script>
+
+</html>

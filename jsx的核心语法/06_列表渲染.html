@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+
+<script crossorigin src="../commentJS/react.js"></script>
+<script crossorigin src="../commentJS/react-dom.js"></script>
+<script src="../commentJS/babel.min.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        counter:0,
+        movies:['星球大战','海王','黑寡妇','黑客帝国'],
+        number:[100.120,110,190,999,666]
+      }
+    }
+    render(){
+      const {movies,number} = this.state;
+      return(
+        <div>
+          <h2>电影列表(遍历)</h2>
+          <ul>
+            {
+              movies.map((item)=>{
+                return <li>{item}</li>
+              })
+            }  
+          </ul>
+          <h2>数字列表(过滤)</h2>
+          <ul>
+            {
+              number.filter((item)=> item > 200 ).map((item)=>{
+                return <li>{item}</li>
+              })
+            }
+          </ul>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App/>,document.getElementById('app'))
+</script>
+
+</html>
