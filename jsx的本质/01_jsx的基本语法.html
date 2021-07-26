@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+
+<script  src="../commentJS/react.js"></script>
+<script  src="../commentJS/react-dom.js"></script>
+<script  src="../commentJS/babel.min.js"></script>
+
+<script type="text/babel">
+  const msg = <h2>hello world</h2>
+  // msg的代码经过babel编译后会转成msg2的代码
+  // 如果写的是msg2的代码，script就无需引入babel.min.js和修改script的类型
+  const msg2 = React.createElement('h2',null,'hello react')
+  ReactDOM.render(msg2,document.getElementById('app'))
+</script>
+
+</html>
