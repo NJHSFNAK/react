@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table{
+      border: 1px solid #eee;
+      text-align: center;
+      border-collapse: collapse;
+    }
+    th,td{
+      border: 1px solid #eee;
+      padding: 10px 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+
+<script crossorigin src="../commentJS/react.js"></script>
+<script crossorigin src="../commentJS/react-dom.js"></script>
+<script src="../commentJS/babel.min.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        counter1:0,
+        counter2:0,
+        counter3:0,
+        counter4:0,
+        sum:0
+      }
+    }
+    render(){
+      const {counter1,counter2,counter3,counter4,sum} = this.state;
+      return(
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>书籍名称</th>
+                <th>出版日期</th>
+                <th>价格</th>
+                <th>购买数量</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>《算法导论》</td>
+                <td>2016-09</td>
+                <td>￥85.00</td> 
+                <td>
+                  <button>-</button>  
+                  {counter1}
+                  <button>+</button>  
+                </td> 
+                <td>
+                  <button>移除</button>  
+                </td> 
+              </tr> 
+              <tr>
+                <td>2</td>
+                <td>《UNIX编程艺术》</td>
+                <td>2016-02</td>
+                <td>￥59.00</td> 
+                <td>
+                  <button> - </button>  
+                  {counter2}
+                  <button> + </button>  
+                </td> 
+                <td>
+                  <button>移除</button>  
+                </td> 
+              </tr> 
+              <tr>
+                <td>3</td>
+                <td>《编程珠玑》</td>
+                <td>2008-10</td>
+                <td>￥39.00</td> 
+                <td>
+                  <button>-</button>  
+                  {counter3}
+                  <button>+</button>  
+                </td> 
+                <td>
+                  <button>移除</button>  
+                </td> 
+              </tr> 
+              <tr>
+              <td>4</td>
+              <td>《代码大全》</td>
+              <td>2016-03</td>
+              <td>￥128.00</td> 
+              <td>
+                <button>-</button>  
+                {counter4}
+                <button>+</button>  
+              </td> 
+              <td>
+                <button>移除</button>  
+              </td> 
+            </tr> 
+            </tbody>
+          </table>
+          <div>总价格:￥{sum}</div>
+        </div>
+      )
+    }
+  }
+  ReactDOM.render(<App/>,document.getElementById('app'))
+</script>
+
+</html>

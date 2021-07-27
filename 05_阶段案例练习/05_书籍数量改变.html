@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table{
+      border: 1px solid #eee;
+      text-align: center;
+      border-collapse: collapse;
+    }
+    th,td{
+      border: 1px solid #eee;
+      padding: 10px 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+</body>
+
+<script crossorigin src="../commentJS/react.js"></script>
+<script crossorigin src="../commentJS/react-dom.js"></script>
+<script src="../commentJS/babel.min.js"></script>
+
+<script src="./format-utils.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor(props){
+      super(props);
+      this.state = {
+        books:[
+          {
+            id:1,
+            name:'《算法导论》',
+            data:'2016-09',
+            price:85.00,
+            count: 1
+          },
+          {
+            id:2,
+            name:'《UNIX编程艺术》',
+            data:'2016-02',
+            price:59.00,
+            count: 1
+          },
+          {
+            id:3,
+            name:'《编程珠玑》',
+            data:'2008-10',
+            price:39.00,
+            count: 1
+          },
+          {
+            id:4,
+            name:'《代码大全》',
+            data:'2016-03',
+            price:129.00,
+            count: 1
+          }
+        ]
+      }
+    }
+    renderBooks(){
+      const {books,click} = this.state;
+      return(
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>书籍名称</th>
+                <th>出版日期</th>
+                <th>价格</th>
+                <th>购买数量</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((item,index)=>{
+                return (
+                  <tr>
+                    <td>{item.id}</td>
+                    <td>{item.name}</td>
+                    <td>{item.data}</td>
+                    <td>{formatPrice(item.price)}</td> 
+                    <td>
+                      <button disabled={item.count===1? true:false} onClick={()=>this.changBookCount(index,'0')}>-</button>  
+                      {item.count}
+                      <button onClick={()=>this.changBookCount(index,'1')}>+</button>  
+                    </td> 
+                    <td>
+                      <button onClick={()=>this.deleteBook(index)}>移除</button>  
+                    </td>   
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+          <h2>总价格:{this.totalPrice()}</h2>
+        </div>
+      );
+    }
+    renderEmptyTip(){
+      return (<h2>购物车为空</h2>);
+    }
+    render(){
+      const {books} = this.state;
+      return books.length === 0? this.renderEmptyTip(): this.renderBooks();
+    }
+    // 计算总价
+    totalPrice(){
+      // 第一种方法
+      // let totalPrice = 0;
+      // for (let item of this.state.books) {
+      //   totalPrice = totalPrice+ item.price * item.count
+      // }
+      // return formatPrice(totalPrice)
+      // 第二种方法
+      let totalPrice = this.state.books.reduce((preValue,item)=>{
+        return preValue + item.count* item.price
+      },0)
+      return formatPrice(totalPrice);
+    }
+    // 移除书籍
+    deleteBook(index){
+      this.setState({
+        books: this.state.books.filter((item,indey)=>{
+          return index !== indey
+        })
+      })
+    }
+    // 书籍数量改变
+    changBookCount(index,flag){
+      // 方法一
+      let newBooks = [...this.state.books];
+      if(flag === '0'){
+        newBooks[index].count = newBooks[index].count -1;
+        if(newBooks[index].count === 1){
+        }
+      }else{
+        newBooks[index].count = newBooks[index].count +1;
+      }
+      this.setState({
+        books: newBooks
+      })
+    }
+  }
+  ReactDOM.render(<App/>,document.getElementById('app'))
+</script>
+
+</html>
