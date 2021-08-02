@@ -7,7 +7,7 @@ class Cpn extends Component{
     )
   }
   componentWillUnmount(){
-    console.log('我被卸载了')
+    console.log('我被卸载了');
   }
 }
 
@@ -44,7 +44,7 @@ export default class App extends Component {
       count: newCount
     })
   }
-  componentDidUpdate(){
+  componentDidUpdate(prevProps,prevState,snapshot){
     console.log('执行了componentDidUpdate方法')
   }
   changeShow(){
