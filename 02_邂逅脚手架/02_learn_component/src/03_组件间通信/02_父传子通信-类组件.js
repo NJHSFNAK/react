@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 class ChildCpn extends Component{
+  constructor(props){
+    super(props);
+  }
   render() {
     // 解构props中的值
     const {name,age,height} = this.props;
