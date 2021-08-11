@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class ChildCpn extends Component{
   constructor(props){
     super(props);
   }
   render(){
+    const {btnClick} = this.props;
     return(
       <div>
-        <button onClick = {()=> this.decrement()}>-</button>
-        <button onClick = {()=> this.increment()}>+</button>
+        <button style={{
+          width:'20px',
+          height: '20px',
+          backgroundColor: 'skyblue'
+        }} onClick = {btnClick}>+</button>
       </div>
     )
   }
@@ -26,7 +30,7 @@ export default class App extends Component {
     return (
       <div>
         <h2>当前计数：{count}</h2>
-        <ChildCpn btnClick={this.increment()}/>
+        <ChildCpn btnClick={()=>this.increment()}/>
       </div>
     )
   }
@@ -34,12 +38,6 @@ export default class App extends Component {
     let {count} = this.state;
     this.setState({
       count: count + 1
-    })
-  }
-  decrement(){
-    let {count} = this.state;
-    this.setState({
-      count: count - 1
     })
   }
 }
